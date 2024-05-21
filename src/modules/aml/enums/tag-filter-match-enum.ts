@@ -1,0 +1,6 @@
+export enum TagFilterMatchEnum {
+  FILTER_NOT_SET = 'FILTER_NOT_SET',
+  NO_MATCH = 'NO_MATCH',
+  MATCH = 'MATCH',
+  PARTIAL_MATCH = 'PARTIAL_MATCH',
+}

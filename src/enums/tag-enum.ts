@@ -1,0 +1,17 @@
+export enum TagEnum {
+  UNKNOWN_TAG = 'UnknownTag',
+  PEP = 'PEP',
+  MEDIA = 'Media',
+  SANCTIONS = 'Sanctions',
+  FINANCE = 'Finance',
+  TERRORISM = 'Terrorism',
+  CRIMINAL = 'Criminal',
+  LEAKS = 'Leaks',
+  LEGAL = 'Legal',
+  SOCIAL = 'Social',
+  UNOFFICIAL_SOURCE = 'UnofficialSource',
+  COMPANY_REGISTRY = 'CompanyRegistry',
+  ASSOCIATE = 'Associate',
+  DEBARRED = 'Debarred',
+  PUBLIC_INTEREST = 'PublicInterest',
+}
