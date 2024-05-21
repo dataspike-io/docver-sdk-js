@@ -1,8 +1,8 @@
-import { ApplicantInfoModel, CreateApplicantRequest, SearchApplicantRequest } from './models/index.js';
+import {  CreateApplicantRequest, SearchApplicantRequest } from './models/index.js';
 import { EntityTypeEnum } from '../../enums/index.js';
-import { TDateISODate } from '../../models/date-iso.js';
+
 import { GenderEnum } from './enums/index.js';
-import { Iso3166Alpha2Code } from 'iso-3166-ts';
+
 
 export const applicantId =  '1ef0c6f9-d9a6-6976-b51d-d57a050caddc'
 

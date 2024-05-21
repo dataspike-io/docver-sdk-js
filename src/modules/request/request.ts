@@ -1,4 +1,4 @@
-import axios, {AxiosError} from "axios";
+import axios from "axios";
 import { ResponseErrorModel, ResponseModel } from './types.js';
 
 
@@ -16,7 +16,7 @@ export class Request {
     this.token = token
 
   }
-   getRequest  = async <R,D = unknown> (method: RequestMethodEnum, paramsQuery :string, data?:D ) =>{
+   getRequest  = async <R,D = unknown> (method: RequestMethodEnum, paramsQuery :string, data?:D) =>{
     try {
       const response = await axios({
         method,

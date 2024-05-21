@@ -2,8 +2,8 @@ import {Request, RequestMethodEnum} from "../request/request.js";
 import { ResponseErrorModel, ResponseIdModel, ResponseModel } from '../request/types.js';
 import { ApplicantModel, SearchApplicantRequest } from './models/index.js';
 import { WithPaginationResponse } from '../../models/index.js';
-import { DataSourceModel } from '../aml/models/index.js';
 import { CreateApplicantRequest } from './models/create-applicant-request.js';
+
 
 export class ApplicantsApi extends Request {
   constructor(token: string,url?: string, ) {
@@ -15,8 +15,9 @@ export class ApplicantsApi extends Request {
     return res as  ResponseModel<ApplicantModel | ResponseErrorModel>
   }
   getApplicants = async (params: SearchApplicantRequest) =>{
-    const path = `/api/v3/applicants`
-    const res = await this.getRequest(RequestMethodEnum.GET,path)
+    const searchParams = new URLSearchParams(params as any).toString()
+    const path = `/api/v3/applicants?${searchParams}`
+    const res = await this.getRequest(RequestMethodEnum.GET,path, params)
     return res as  ResponseModel<WithPaginationResponse<ApplicantModel>>
   }
   createApplicant = async (applicant: CreateApplicantRequest) => {
