@@ -6,7 +6,7 @@ import { TDateISODate } from '../../../models/date-iso.js';
 
 
 // not working: fix TODO
-let data = (new Array(11).fill(1).map((a, i) =>  i / 10)) as const
+const data = (new Array(11).fill(1).map((a, i) =>  i / 10)) as const
 type FuzzinessLevelType = typeof data[number];
 
 
