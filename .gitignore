@@ -52,6 +52,8 @@ web_modules/
 .npm
 /.idea
 .idea
+build
+/build
 # Optional eslint cache
 .eslintcache
 
