@@ -1,7 +1,6 @@
 import { Api } from './modules/api.js';
 import { searchApplicants } from './modules/applicants/test.js';
-const token = '***REMOVED***'
-
+const token = '---'
 
 
 
