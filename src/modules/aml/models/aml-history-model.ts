@@ -1,4 +1,4 @@
-import {AmlReportModel} from "./aml-report-models.js";
+import {AmlReportModel} from "./aml-report-models.ts";
 
 export type AmlHistoryModel = {
   requested_name: string,

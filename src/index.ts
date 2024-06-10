@@ -1,17 +1,11 @@
-import { Api } from './modules/api.js';
-import { searchApplicants } from './modules/applicants/test.js';
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJrZXkiOiJvNGU5NDMyMTJkNjI0NTkyYSIsInRwZSI6MCwiYXAiOlsxM10sImlzcyI6ImRhdGFzcGlrZS5pbyIsInMiOiIyNDQ2Y2U2ZC1lZDg3LTRjMWUtYTZkZi1iYThiNDFhODAwNTcifQ.exEOHscPJP65L7jnE8lssQk3ZtcDSdHVpeUM1HmMaYI'
+import { Api } from './modules/index.ts';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 
+const TOKEN: string = process.env.API_ENDPOINT === 'prod' ? process.env.TOKEN || '' : process.env.TOKEN_SANDBOX || '';
 
-
-const api = new Api(token)
-const res = await api.applicant.getApplicants(searchApplicants)
-
-
-console.log(res)
-
-
+const api = new Api(TOKEN);
 
 
 

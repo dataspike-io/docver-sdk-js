@@ -1,3 +1,3 @@
-export * from './aml-sources-model.js'
-export * from './with-pagination-response.js'
-export * from './with-pagination-request.js'
+export * from './aml-sources-model.ts'
+export * from './with-pagination-response.ts'
+export * from './with-pagination-request.ts'

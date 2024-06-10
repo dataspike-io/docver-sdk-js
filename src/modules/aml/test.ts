@@ -1,10 +1,11 @@
 import { Iso3166Alpha2Code } from 'iso-3166-ts';
-import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../enums/index.js';
-import { AmlSearchRequestModel, DataSourceModel, TDateISODate } from './models/index.js';
-import { GenderEnum } from './enums/index.js';
-import { DataSourcesSearchRequest } from './models/data-sources-search-request.js';
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../enums/index.ts';
+import { AmlSearchRequestModel } from './models/index.ts';
+import { GenderEnum } from './enums/index.ts';
+import { SearchDataSourcesRequest } from './models/search-data-sources-request.ts';
+import { TDateISODate } from '../../models/date-iso.ts';
 
-export  const searchAml = {
+const searchAml = {
   "full_name": "putin",
   "countries": ['RU', 'AG'] as Iso3166Alpha2Code[],
   "entity_types": [EntityTypeEnum.PERSON],
@@ -19,12 +20,18 @@ export  const searchAml = {
   "phonetics": true,
 } as AmlSearchRequestModel
 
-export const amlRequestId  = '1ef14657-3041-619f-82ba-7ec0580e143e'
+const amlRequestId  = '1ef14657-3041-619f-82ba-7ec0580e143e'
 
-export const searchDataSources = {
+const searchDataSources = {
   name: '',
   tags: [TagEnum.SANCTIONS],
   risk_scores: [AmlRiskScoreEnum.HIGH],
   page: 0,
   limit: 20,
-} as DataSourcesSearchRequest
+} as SearchDataSourcesRequest
+
+export const amlTest ={
+  searchAml,
+  amlRequestId,
+  searchDataSources
+}
