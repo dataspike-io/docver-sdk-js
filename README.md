@@ -39,6 +39,18 @@ Currently library provides following resources
 - Profile `api.profile`
 - SDK `api.sdk`
 
+### AML Screening Example
+
+#### AML search
+
+```node.js
+from dataspike import *
+import { amlExampleRequests, Api } from './modules/index.ts';
+
+const api = new Api(TOKEN);
+const amlSearchResult = await api.aml.search(amlExampleRequests.amlSearchExample);
+```
+
 ```node.js
 from dataspike import *
 

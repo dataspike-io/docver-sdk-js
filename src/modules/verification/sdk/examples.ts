@@ -15,7 +15,7 @@ const customFields = {
   // address: "asdasd",
 };
 
-export const sdkTest = {
+export const sdkExamples = {
   docFront,
   customFields,
 };
