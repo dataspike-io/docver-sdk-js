@@ -1,3 +1,3 @@
-export * from './entity-type-enum.js'
-export * from './aml-risk-score-enum.js'
-export * from './tag-enum.js'
+export * from './entity-type-enum';
+export * from './aml-risk-score-enum';
+export * from './tag-enum';

@@ -1,16 +1,8 @@
-import { Api } from './modules/api.js';
-import { searchApplicants } from './modules/applicants/test.js';
-const token = '---'
+import { Api } from './modules/api';
+import { searchApplicants } from './modules/applicants/test';
+const token = '---';
 
+const api = new Api(token);
+const res = await api.applicant.getApplicants(searchApplicants);
 
-
-const api = new Api(token)
-const res = await api.applicant.getApplicants(searchApplicants)
-
-
-console.log(res)
-
-
-
-
-
+console.log(res);

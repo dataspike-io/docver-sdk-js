@@ -1,6 +1,6 @@
-import { GenderEnum } from '../enums/index.js';
+import { GenderEnum } from '../enums';
 import { Iso3166Alpha2Code } from 'iso-3166-ts';
-import { TDateISODate } from '../../../models/date-iso.js';
+import { TDateISODate } from '../../../models/date-iso';
 
 export type ApplicantInfoModel = Partial<{
   custom_fields?: {
@@ -25,4 +25,3 @@ export type ApplicantInfoModel = Partial<{
     };
   };
 }>;
-

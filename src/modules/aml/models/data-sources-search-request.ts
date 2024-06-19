@@ -1,7 +1,7 @@
-import { AmlRiskScoreEnum, TagEnum } from '../../../enums/index.js';
+import { AmlRiskScoreEnum, TagEnum } from '../../../enums';
 
-import { WithPaginationRequest } from '../../../models/index.js';
-import { DataSourceModel } from './data-sources-model.js';
+import { WithPaginationRequest } from '../../../models';
+import { DataSourceModel } from './data-sources-model';
 
 export type DataSourcesSearchRequest = WithPaginationRequest & {
   name?: string | DataSourceModel['source_id'];

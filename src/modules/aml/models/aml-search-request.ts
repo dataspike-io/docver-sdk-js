@@ -1,14 +1,12 @@
-import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums/index.js';
-import { GenderEnum } from '../enums/index.js';
-import { DataSourceModel } from './data-sources-model.js';
-import {  Iso3166Alpha2Code } from "iso-3166-ts";
-import { TDateISODate } from '../../../models/date-iso.js';
-
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums';
+import { GenderEnum } from '../enums';
+import { DataSourceModel } from './data-sources-model';
+import { Iso3166Alpha2Code } from 'iso-3166-ts';
+import { TDateISODate } from '../../../models/date-iso';
 
 // not working: fix TODO
-const data = (new Array(11).fill(1).map((a, i) =>  i / 10)) as const
-type FuzzinessLevelType = typeof data[number];
-
+const data = new Array(11).fill(1).map((a, i) => i / 10);
+type FuzzinessLevelType = (typeof data)[number];
 
 export type AmlSearchRequestModel = {
   full_name: string;
@@ -31,4 +29,3 @@ export type AmlSearchRequestModel = {
   phonetics?: boolean;
   registration_ids?: string[];
 };
-

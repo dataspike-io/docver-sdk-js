@@ -1,16 +1,14 @@
-import {  CreateApplicantRequest, SearchApplicantRequest } from './models/index.js';
-import { EntityTypeEnum } from '../../enums/index.js';
+import { CreateApplicantRequest, SearchApplicantRequest } from './models';
+import { EntityTypeEnum } from '../../enums';
 
-import { GenderEnum } from './enums/index.js';
+import { GenderEnum } from './enums';
 
-
-export const applicantId =  '1ef0c6f9-d9a6-6976-b51d-d57a050caddc'
+export const applicantId = '1ef0c6f9-d9a6-6976-b51d-d57a050caddc';
 
 export const searchApplicants = {
   page: 0,
-  limit: 20
-} as SearchApplicantRequest
-
+  limit: 20,
+} as SearchApplicantRequest;
 
 export const createApplicant = {
   email: 'test@c.com',
@@ -31,10 +29,10 @@ export const createApplicant = {
     addresses: {
       residence: {
         country: 'RU',
-        city:  'city4',
+        city: 'city4',
         postal_code: 'postal_code5',
         street: 'street6',
-      }
-    }
-  }
-} as CreateApplicantRequest
+      },
+    },
+  },
+} as CreateApplicantRequest;

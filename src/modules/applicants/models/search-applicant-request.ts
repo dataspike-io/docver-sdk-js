@@ -1,5 +1,5 @@
-import { WithPaginationRequest } from '../../../models/index.js';
-import { EntityTypeEnum } from '../../../enums/index.js';
+import { WithPaginationRequest } from '../../../models';
+import { EntityTypeEnum } from '../../../enums';
 
 export type SearchApplicantRequest = WithPaginationRequest & {
   name?: string;

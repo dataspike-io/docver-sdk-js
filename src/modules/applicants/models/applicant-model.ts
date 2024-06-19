@@ -1,7 +1,7 @@
-import {ApplicantInfoModel} from "./applicant-info-model.js";
-import {AmlRiskScoreEnum, EntityTypeEnum, TagEnum} from "../../../enums/index.js";
-import {ApplicantVerificationStatusEnum} from "../enums/index.js";
-import {AmlSourcesModel} from "../../../models/index.js";
+import { ApplicantInfoModel } from './applicant-info-model';
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums';
+import { ApplicantVerificationStatusEnum } from '../enums';
+import { AmlSourcesModel } from '../../../models';
 
 export type ApplicantModel = {
   applicant_id: string;
