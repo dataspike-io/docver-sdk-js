@@ -2,49 +2,73 @@ import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } fro
 import { SearchProfileRequest } from './models/search-profile-request.js';
 import { WithPaginationResponse } from '../../../models/index.js';
 import { BaseProfileModel, CreateVerificationLinkRequest, ProfileModel } from './models/index.js';
+import { convertToSearchParams } from '../../utilts.ts';
 
 export class VerificationProfileApi extends BaseAPi {
   #profilePath = '/api/v3/profiles';
 
-  constructor(token: string) {
-    super(token);
+  constructor(token: string, isSandbox: boolean) {
+    super(token, isSandbox);
   }
 
   getProfiles = async (params: SearchProfileRequest) => {
-    const searchParams = new URLSearchParams(params as any).toString();
-    return await this.getRequest<WithPaginationResponse<ProfileModel>>(RequestMethodEnum.GET, `${this.#profilePath}?${searchParams}`);
+    return await this.getRequest<WithPaginationResponse<ProfileModel>>({ paramsQuery: `${this.#profilePath}?${convertToSearchParams(params)}` });
   };
-  createProfile = async (data: BaseProfileModel) => {
-    return await this.getRequest<ResponseIdModel>(RequestMethodEnum.POST, this.#profilePath, data);
+  createProfile = async (profile: BaseProfileModel) => {
+    return await this.getRequest<ResponseIdModel>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: this.#profilePath,
+      data: profile,
+    });
   };
   getProfileById = async (profileId: string) => {
-    return await this.getRequest<ProfileModel>(RequestMethodEnum.GET, `${this.#profilePath}/${profileId}`);
+    return await this.getRequest<ProfileModel>({ paramsQuery: `${this.#profilePath}/${profileId}` });
   };
-  updateProfile = async (profile: BaseProfileModel, profileId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#profilePath}/${profileId}`, profile);
+  updateProfile = async (profileId: string, profile: BaseProfileModel) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#profilePath}/${profileId}`,
+      data: profile,
+    });
   };
   archiveProfile = async (profileId: string) => {
-    return await this.getRequest<ResponseDefaultModel>(RequestMethodEnum.DELETE, `${this.#profilePath}/${profileId}`);
+    return await this.getRequest<ResponseDefaultModel>({
+      method: RequestMethodEnum.DELETE,
+      paramsQuery: `${this.#profilePath}/${profileId}`,
+    });
   };
   setDefaultProfile = async (profileId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#profilePath}/${profileId}/set_default`);
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#profilePath}/${profileId}/set_default`,
+    });
   };
-  createVerificationLink = async (verificationLink: CreateVerificationLinkRequest, profileId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#profilePath}/${profileId}/link`, verificationLink);
+  createVerificationLink = async (profileId: string, verificationLink: CreateVerificationLinkRequest) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#profilePath}/${profileId}/link`,
+      data: verificationLink,
+    });
   };
   getVerificationLinkByLinkId = async (linkId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.GET, `/api/v3/sdk/link/${linkId}`);
+    return await this.getRequest<string>({ paramsQuery: `/api/v3/sdk/link/${linkId}` });
   };
-  changeVerificationLinkOptions = async (verificationLink: CreateVerificationLinkRequest, linkId: string) => {
+  changeVerificationLinkOptions = async (linkId: string, verificationLink: CreateVerificationLinkRequest) => {
     return await this.getRequest<{
       link_id: string
-    }>(RequestMethodEnum.POST, `${this.#profilePath}/link/${linkId}`, verificationLink);
+    }>({ method: RequestMethodEnum.POST, paramsQuery: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
   };
   archiveVerificationLink = async (linkId: string) => {
     // not working
-    return await this.getRequest<string>(RequestMethodEnum.DELETE, `${this.#profilePath}/link/${linkId}`);
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.DELETE,
+      paramsQuery: `${this.#profilePath}/link/${linkId}`,
+    });
   };
   unarchiveVerificationLink = async (linkId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#profilePath}/link/${linkId}/unarchive`);
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#profilePath}/link/${linkId}/unarchive`,
+    });
   };
 }

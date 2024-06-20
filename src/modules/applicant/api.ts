@@ -10,41 +10,64 @@ import {
 } from './models/index.ts';
 import { WithPaginationResponse } from '../../models/index.ts';
 import { CreateApplicantRequest } from './models/create-applicant-request.ts';
+import { convertToSearchParams } from '../utilts.ts';
 
 
 export class ApplicantApi extends BaseAPi {
   #applicantsPath = `/api/v3/applicants`;
 
-  constructor(token: string) {
-    super(token);
+  constructor(token: string, isSandbox: boolean) {
+    super(token, isSandbox);
   }
 
   getApplicantById = async (applicantId: string) => {
-    return await this.getRequest<ApplicantModel>(RequestMethodEnum.GET, `${this.#applicantsPath}/${applicantId}`);
+    return await this.getRequest<ApplicantModel>({ paramsQuery: `${this.#applicantsPath}/${applicantId}` });
   };
   getApplicants = async (params: SearchApplicantRequest) => {
-    const searchParams = new URLSearchParams(params as any).toString();
-    return await this.getRequest<WithPaginationResponse<ApplicantModel>>(RequestMethodEnum.GET, `${this.#applicantsPath}?${searchParams}`, params);
+    return await this.getRequest<WithPaginationResponse<ApplicantModel>>({ paramsQuery: `${this.#applicantsPath}?${convertToSearchParams(params)}` });
   };
   createApplicant = async (applicant: CreateApplicantRequest) => {
-    return await this.getRequest<ResponseIdModel>(RequestMethodEnum.POST, this.#applicantsPath, applicant);
+    return await this.getRequest<ResponseIdModel>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: this.#applicantsPath,
+      data: applicant,
+    });
   };
-  updateApplicant = async (applicant: UpdateApplicantRequest, applicantId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#applicantsPath}/${applicantId}`, applicant);
+  updateApplicant = async (applicantId: string, applicant: UpdateApplicantRequest) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#applicantsPath}/${applicantId}`,
+      data: applicant,
+    });
   };
   deleteApplicant = async (applicantId: string) => {
-    return await this.getRequest<string>(RequestMethodEnum.DELETE, `${this.#applicantsPath}/${applicantId}`);
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.DELETE,
+      paramsQuery: `${this.#applicantsPath}/${applicantId}`,
+    });
   };
   getApplicantByExternalId = async (externalId: string) => {
-    return await this.getRequest<ApplicantModel>(RequestMethodEnum.GET, `${this.#applicantsPath}/by_external_id/${externalId}`);
+    return await this.getRequest<ApplicantModel>({ paramsQuery: `${this.#applicantsPath}/by_external_id/${externalId}` });
   };
-  getApplicantTelegramLink = async (applicantId: string, data: ApplicantTelegramRequest) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#applicantsPath}/${applicantId}/link/tg`, data);
+  getApplicantTelegramLink = async (applicantId: string, applicant: ApplicantTelegramRequest) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#applicantsPath}/${applicantId}/link/tg`,
+      data: applicant,
+    });
   };
-  changeApplicantSearchOptions = async (applicantId: string, data: ApplicantSearchOptions) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#applicantsPath}/${applicantId}/search-options`, data);
+  changeApplicantSearchOptions = async (applicantId: string, applicant: ApplicantSearchOptions) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#applicantsPath}/${applicantId}/search-options`,
+      data: applicant,
+    });
   };
-  changeApplicantAmlScreening = async (applicantId: string, data: ChangeApplicantAmlScreeningRequest) => {
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#applicantsPath}/${applicantId}/screening`, data);
+  changeApplicantAmlScreening = async (applicantId: string, applicant: ChangeApplicantAmlScreeningRequest) => {
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#applicantsPath}/${applicantId}/screening`,
+      data: applicant,
+    });
   };
 }

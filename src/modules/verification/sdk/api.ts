@@ -11,12 +11,12 @@ export class SdkApi extends BaseAPi {
     'Content-Type': 'multipart/form-data',
   };
 
-  constructor(token: string) {
-    super(token);
+  constructor(token: string, isSandbox: boolean) {
+    super(token, isSandbox);
   }
 
   getVerificationByShortId = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    return await this.getRequest<VerificationResultModel>(RequestMethodEnum.GET, `${this.#verificationsPath}/${verificationShortId}`);
+    return await this.getRequest<VerificationResultModel>({ paramsQuery: `${this.#verificationsPath}/${verificationShortId}` });
   };
   uploadDocument = async (verificationShortId: string | VerificationResultModel['verification_url_id'], data: UploadDocumentRequest) => {
     const currentFile = utils.convertFile(data.file);
@@ -25,13 +25,25 @@ export class SdkApi extends BaseAPi {
       file: currentFile,
     };
 
-    return await this.getRequest<string>(RequestMethodEnum.POST, `${this.#uploadPath}/${verificationShortId}`, currentData, this.#uploadHeaders);
+    return await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#uploadPath}/${verificationShortId}`,
+      data: currentData,
+      headers: this.#uploadHeaders,
+    });
   };
   proceedVerification = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    let res = await this.getRequest<string>(RequestMethodEnum.POST, `${this.#verificationsPath}/${verificationShortId}/proceed`);
+    let res = await this.getRequest<string>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#verificationsPath}/${verificationShortId}/proceed`,
+    });
     return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
   setCustomFields = async (verificationShortId: string | VerificationResultModel['verification_url_id'], data: SetCustomFieldsRequest) => {
-    return await this.getRequest<ResponseDefaultModel>(RequestMethodEnum.POST, `${this.#verificationsPath}/${verificationShortId}/fields`, data);
+    return await this.getRequest<ResponseDefaultModel>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: `${this.#verificationsPath}/${verificationShortId}/fields`,
+      data,
+    });
   };
 }

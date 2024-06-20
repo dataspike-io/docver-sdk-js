@@ -10,16 +10,34 @@ export enum RequestMethodEnum {
 
 }
 
+
+export type RequestProps<D> = {
+  method?: RequestMethodEnum,
+  paramsQuery?: string,
+  data?: D
+  headers?: Record<string, string>
+}
+
+
 export class BaseAPi {
   url: string;
   token: string;
+  isSandbox?: boolean;
 
-  constructor(token: string) {
-    this.url = process.env.API_ENDPOINT === 'prod' ? 'https://api.dataspike.dev' : 'https://sandboxapi.dataspike.io';
+  constructor(token: string, isSandbox: boolean = false) {
+    this.isSandbox = isSandbox;
     this.token = token;
+    this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.dev';
+
   }
 
-  getRequest = async <R, D = unknown>(method: RequestMethodEnum, paramsQuery: string, data?: D, headers?: Record<string, string>) => {
+  // getRequest = async <R, D = unknown>(method: RequestMethodEnum, paramsQuery: string, data?: D, headers?: Record<string, string>) => {
+  getRequest = async <R, D = unknown>({
+                                        method = RequestMethodEnum.GET,
+                                        paramsQuery,
+                                        data,
+                                        headers,
+                                      }: RequestProps<D>) => {
     try {
       const response = await axios({
         method,

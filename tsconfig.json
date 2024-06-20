@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "esnext",
+    "target": "ES2020",
+    "module": "CommonJS",
     "moduleResolution": "node",
-    "rootDir": "./src",
     "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
@@ -14,9 +13,24 @@
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+      "enums/*": [
+        "src/enums/*"
+      ],
+      "modules/*": [
+        "src/modules/*"
+      ],
+      "modules/*": [
+        "src/models/*"
+      ]
+    }
   },
   "include": [
+    "index.ts",
     "src/**/*"
   ],
   "exclude": [

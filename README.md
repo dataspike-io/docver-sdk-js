@@ -4,8 +4,6 @@ The official wrapper for Dataspike API
 
 ## Installation
 
-``
-
 ## Getting started
 
 Library offers well typed async API powered by node.js and axios.

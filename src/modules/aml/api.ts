@@ -8,21 +8,33 @@ export class AmlApi extends BaseAPi {
   #amlPath = '/api/v3/aml/search';
   #datasourcesPath = '/webapi/public/datasources';
 
-  constructor(token: string) {
-    super(token);
+  constructor(token: string, isSandbox?: boolean) {
+    super(token, isSandbox);
   }
 
   getHistoryById = async (id: string) => {
-    return await this.getRequest<AmlHistoryModel>(RequestMethodEnum.GET, `${this.#amlPath}/history/${id}`);
+    return await this.getRequest<AmlHistoryModel>({
+      paramsQuery: `${this.#amlPath}/history/${id}`,
+    });
   };
   getHistory = async () => {
-    return await this.getRequest<AmlHistoryModel>(RequestMethodEnum.GET, `${this.#amlPath}/history`);
+    return await this.getRequest<AmlHistoryModel>({
+      paramsQuery: `${this.#amlPath}/history`,
+    });
   };
   search = async (data: AmlSearchRequestModel) => {
-    return await this.getRequest<AmlHistoryModel, AmlSearchRequestModel>(RequestMethodEnum.POST, this.#amlPath, data);
+    return await this.getRequest<AmlHistoryModel, AmlSearchRequestModel>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: this.#amlPath,
+      data,
+    });
   };
   getDataSources = async (data: SearchDataSourcesRequest) => {
-    return await this.getRequest<WithPaginationResponse<DataSourceModel>>(RequestMethodEnum.POST, this.#datasourcesPath, data);
+    return await this.getRequest<WithPaginationResponse<DataSourceModel>>({
+      method: RequestMethodEnum.POST,
+      paramsQuery: this.#datasourcesPath,
+      data,
+    });
   };
 }
 
