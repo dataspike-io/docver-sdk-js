@@ -2,15 +2,12 @@ import {
   VerificationAddressTypeEnum,
   VerificationBiometricTypeEnum,
   VerificationDocumentTypeEnum,
-} from '../../../../enums/index.ts';
-import { DocumentSideEnum } from '../enums/index.ts';
+} from '../../../../enums';
+import { DocumentSideEnum } from '../enums';
 
 export type UploadDocumentRequest = {
   file: File;
-  document_type:
-    | VerificationDocumentTypeEnum
-    | VerificationBiometricTypeEnum
-    | VerificationAddressTypeEnum;
+  document_type: VerificationDocumentTypeEnum | VerificationBiometricTypeEnum | VerificationAddressTypeEnum;
   side?: DocumentSideEnum;
   issued_country?: string;
-}
+};

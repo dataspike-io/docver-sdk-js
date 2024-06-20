@@ -1,4 +1,4 @@
-import {AmlRiskScoreEnum, TagEnum} from "../enums/index.ts";
+import { AmlRiskScoreEnum, TagEnum } from '../enums';
 
 export type AmlSourcesModel = {
   source_id: string;
@@ -9,4 +9,3 @@ export type AmlSourcesModel = {
   risk_score?: AmlRiskScoreEnum;
   tags?: TagEnum[];
 };
-

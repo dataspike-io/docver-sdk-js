@@ -1,5 +1,4 @@
-import { AmlRiskScoreEnum, TagEnum } from '../../../enums/index.ts';
-
+import { AmlRiskScoreEnum, TagEnum } from '../../../enums';
 
 export type DataSourceModel = {
   source_id: string;

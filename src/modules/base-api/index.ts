@@ -1,2 +1,2 @@
-export * from './types.ts'
-export * from './base-api.ts'
+export * from './types';
+export * from './base-api';

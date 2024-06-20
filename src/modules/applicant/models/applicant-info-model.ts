@@ -1,9 +1,8 @@
-import { ApplicantGenderEnum } from '../enums/index.ts';
+import { ApplicantGenderEnum } from '../enums';
 import { Iso3166Alpha2Code } from 'iso-3166-ts';
-import { TDateISODate } from '../../../models/date-iso.ts';
-import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums/index.ts';
-import { DataSourceModel } from '../../aml/index.ts';
-
+import { TDateISODate } from '../../../models/date-iso';
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums';
+import { DataSourceModel } from '../../aml';
 
 export type ApplicantMainInfo = {
   external_id?: string;
@@ -11,7 +10,7 @@ export type ApplicantMainInfo = {
   phone?: string;
   aml_screening_enabled?: boolean;
   applicant_type: EntityTypeEnum;
-}
+};
 
 export type ApplicantInfoModel = Partial<{
   custom_fields?: {
@@ -38,11 +37,10 @@ export type ApplicantInfoModel = Partial<{
 }>;
 
 export type ApplicantSearchOptions = {
-  risk_scores: AmlRiskScoreEnum[],
-  tags: TagEnum[],
-  sources: string[] | DataSourceModel['source_id'][],
-  phonetics: boolean,
-  fuzziness: boolean,
-  "mode": 0
-}
-
+  risk_scores: AmlRiskScoreEnum[];
+  tags: TagEnum[];
+  sources: string[] | DataSourceModel['source_id'][];
+  phonetics: boolean;
+  fuzziness: boolean;
+  mode: 0;
+};

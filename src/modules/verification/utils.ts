@@ -1,7 +1,6 @@
 import fs from 'fs';
 import { Readable } from 'stream';
 
-
 function convertFileByImgPath(imgPath: string) {
   return fs.createReadStream(imgPath);
 }

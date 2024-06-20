@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec 'ts-node index.ts'",
     "start": "npm run build && node build/index.js",
-    "build": "rimraf ./build && tsc",
+    "build": "rimraf ./build && npx tsc -d --declarationDir dist/lib --declarationMap --emitDeclarationOnly",
     "lint": "eslint ./src",
     "format": "eslint ./src --fix",
     "precommit": "npm run lint"

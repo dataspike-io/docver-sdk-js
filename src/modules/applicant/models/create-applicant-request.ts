@@ -1,8 +1,6 @@
-import { ApplicantInfoModel, ApplicantMainInfo, ApplicantSearchOptions } from './applicant-info-model.ts';
+import { ApplicantInfoModel, ApplicantMainInfo, ApplicantSearchOptions } from './applicant-info-model';
 
-export type CreateApplicantRequest = ApplicantMainInfo &{
+export type CreateApplicantRequest = ApplicantMainInfo & {
   info?: ApplicantInfoModel;
-  search_options? : ApplicantSearchOptions
+  search_options?: ApplicantSearchOptions;
 };
-
-

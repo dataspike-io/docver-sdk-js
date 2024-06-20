@@ -1,7 +1,7 @@
-import { AmlRiskScoreEnum, TagEnum } from '../../../enums/index.ts';
+import { AmlRiskScoreEnum, TagEnum } from '../../../enums';
 
-import { WithPaginationRequest } from '../../../models/index.ts';
-import { DataSourceModel } from './data-sources-model.ts';
+import { WithPaginationRequest } from '../../../models';
+import { DataSourceModel } from './data-sources-model';
 
 export type SearchDataSourcesRequest = WithPaginationRequest & {
   name?: string | DataSourceModel['source_id'];

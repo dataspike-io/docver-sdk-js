@@ -1,6 +1,6 @@
-import {AmlRiskScoreEnum, EntityTypeEnum, TagEnum} from "../../../enums/index.ts";
-import {GenderEnum, TagFilterMatchEnum, TagMatchLevelEnum} from "../enums/index.ts";
-import {AmlSourcesModel} from "../../../models/index.ts";
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums';
+import { GenderEnum, TagFilterMatchEnum, TagMatchLevelEnum } from '../enums';
+import { AmlSourcesModel } from '../../../models';
 
 export type AmlReportModel = {
   uuid: string;

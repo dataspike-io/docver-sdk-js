@@ -1,5 +1,5 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api/base-api.ts';
-import { ResponseIdModel } from '../base-api/types.ts';
+import { BaseAPi, RequestMethodEnum } from '../base-api/base-api';
+import { ResponseIdModel } from '../base-api/types';
 import {
   ApplicantModel,
   ApplicantSearchOptions,
@@ -7,11 +7,10 @@ import {
   ChangeApplicantAmlScreeningRequest,
   SearchApplicantRequest,
   UpdateApplicantRequest,
-} from './models/index.ts';
-import { WithPaginationResponse } from '../../models/index.ts';
-import { CreateApplicantRequest } from './models/create-applicant-request.ts';
-import { convertToSearchParams } from '../utilts.ts';
-
+} from './models';
+import { WithPaginationResponse } from '../../models';
+import { CreateApplicantRequest } from './models/create-applicant-request';
+import { convertToSearchParams } from '../utilts';
 
 export class ApplicantApi extends BaseAPi {
   #applicantsPath = `/api/v3/applicants`;
@@ -24,7 +23,9 @@ export class ApplicantApi extends BaseAPi {
     return await this.getRequest<ApplicantModel>({ paramsQuery: `${this.#applicantsPath}/${applicantId}` });
   };
   getApplicants = async (params: SearchApplicantRequest) => {
-    return await this.getRequest<WithPaginationResponse<ApplicantModel>>({ paramsQuery: `${this.#applicantsPath}?${convertToSearchParams(params)}` });
+    return await this.getRequest<WithPaginationResponse<ApplicantModel>>({
+      paramsQuery: `${this.#applicantsPath}?${convertToSearchParams(params)}`,
+    });
   };
   createApplicant = async (applicant: CreateApplicantRequest) => {
     return await this.getRequest<ResponseIdModel>({
@@ -47,7 +48,9 @@ export class ApplicantApi extends BaseAPi {
     });
   };
   getApplicantByExternalId = async (externalId: string) => {
-    return await this.getRequest<ApplicantModel>({ paramsQuery: `${this.#applicantsPath}/by_external_id/${externalId}` });
+    return await this.getRequest<ApplicantModel>({
+      paramsQuery: `${this.#applicantsPath}/by_external_id/${externalId}`,
+    });
   };
   getApplicantTelegramLink = async (applicantId: string, applicant: ApplicantTelegramRequest) => {
     return await this.getRequest<string>({

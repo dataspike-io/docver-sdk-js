@@ -1,1 +1,1 @@
-export * from './webhooks-type-enum.ts'
+export * from './webhooks-type-enum';

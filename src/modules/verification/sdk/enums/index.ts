@@ -1,1 +1,1 @@
-export * from './document-side-enum.ts'
+export * from './document-side-enum';

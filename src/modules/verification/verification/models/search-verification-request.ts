@@ -1,9 +1,6 @@
-import { WithPaginationRequest } from '../../../../models/index.js';
+import { WithPaginationRequest } from '../../../../models';
 import { Iso3166Alpha2Code } from 'iso-3166-ts';
-import {
-  VerificationDocumentTypeEnum,
-  VerificationStatusEnum,
-} from '../../../../enums/index.js';
+import { VerificationDocumentTypeEnum, VerificationStatusEnum } from '../../../../enums';
 
 export type SearchVerificationRequest = WithPaginationRequest & {
   name?: string;

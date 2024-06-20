@@ -1,8 +1,7 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api/base-api.js';
-import { AmlHistoryModel, AmlSearchRequestModel, DataSourceModel } from './models/index.js';
-import { WithPaginationResponse } from '../../models/index.js';
-import { SearchDataSourcesRequest } from './models/search-data-sources-request.js';
-
+import { BaseAPi, RequestMethodEnum } from '../base-api/base-api';
+import { AmlHistoryModel, AmlSearchRequestModel, DataSourceModel } from './models';
+import { WithPaginationResponse } from '../../models';
+import { SearchDataSourcesRequest } from './models/search-data-sources-request';
 
 export class AmlApi extends BaseAPi {
   #amlPath = '/api/v3/aml/search';
@@ -37,4 +36,3 @@ export class AmlApi extends BaseAPi {
     });
   };
 }
-

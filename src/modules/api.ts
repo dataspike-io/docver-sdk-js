@@ -1,8 +1,7 @@
-import { AmlApi } from './aml/api.ts';
-import { ApplicantApi } from './applicant/api.ts';
-import { SdkApi, VerificationApi, VerificationProfileApi } from './verification/index.ts';
-import { WebhookApi } from './webhook/index.ts';
-
+import { AmlApi } from './aml/api';
+import { ApplicantApi } from './applicant/api';
+import { SdkApi, VerificationApi, VerificationProfileApi } from './verification';
+import { WebhookApi } from './webhook';
 
 export class Api {
   token: string;

@@ -1,8 +1,8 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api/index.ts';
-import { SearchProfileRequest } from './models/search-profile-request.js';
-import { WithPaginationResponse } from '../../../models/index.js';
-import { BaseProfileModel, CreateVerificationLinkRequest, ProfileModel } from './models/index.js';
-import { convertToSearchParams } from '../../utilts.ts';
+import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api';
+import { SearchProfileRequest } from './models/search-profile-request';
+import { WithPaginationResponse } from '../../../models';
+import { BaseProfileModel, CreateVerificationLinkRequest, ProfileModel } from './models';
+import { convertToSearchParams } from '../../utilts';
 
 export class VerificationProfileApi extends BaseAPi {
   #profilePath = '/api/v3/profiles';
@@ -12,7 +12,9 @@ export class VerificationProfileApi extends BaseAPi {
   }
 
   getProfiles = async (params: SearchProfileRequest) => {
-    return await this.getRequest<WithPaginationResponse<ProfileModel>>({ paramsQuery: `${this.#profilePath}?${convertToSearchParams(params)}` });
+    return await this.getRequest<WithPaginationResponse<ProfileModel>>({
+      paramsQuery: `${this.#profilePath}?${convertToSearchParams(params)}`,
+    });
   };
   createProfile = async (profile: BaseProfileModel) => {
     return await this.getRequest<ResponseIdModel>({
@@ -55,7 +57,7 @@ export class VerificationProfileApi extends BaseAPi {
   };
   changeVerificationLinkOptions = async (linkId: string, verificationLink: CreateVerificationLinkRequest) => {
     return await this.getRequest<{
-      link_id: string
+      link_id: string;
     }>({ method: RequestMethodEnum.POST, paramsQuery: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
   };
   archiveVerificationLink = async (linkId: string) => {

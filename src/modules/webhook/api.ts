@@ -1,7 +1,7 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api/index.ts';
-import { SearchWebhookHistoryRequest, WebhookHistoryModel, WebhookModel, WebhookModelDefault } from './models/index.ts';
-import { WithPaginationResponse } from '../../models/index.ts';
-import { convertToSearchParams } from '../utilts.ts';
+import { BaseAPi, RequestMethodEnum } from '../base-api';
+import { SearchWebhookHistoryRequest, WebhookHistoryModel, WebhookModel, WebhookModelDefault } from './models';
+import { WithPaginationResponse } from '../../models';
+import { convertToSearchParams } from '../utilts';
 
 export class WebhookApi extends BaseAPi {
   #webhooksPath = '/api/v3/organization/webhooks';
@@ -13,7 +13,7 @@ export class WebhookApi extends BaseAPi {
 
   getWebhook = async () => {
     return await this.getRequest<{
-      webhooks: WebhookModel[]
+      webhooks: WebhookModel[];
     }>({ paramsQuery: `${this.#webhooksPath}` });
   };
   createWebhook = async (webhook: WebhookModelDefault) => {
@@ -37,6 +37,8 @@ export class WebhookApi extends BaseAPi {
     });
   };
   getWebhookHistory = async (params: SearchWebhookHistoryRequest) => {
-    return await this.getRequest<WithPaginationResponse<WebhookHistoryModel>>({ paramsQuery: `${this.#webhooksHistoryPath}?${convertToSearchParams(params)}` });
+    return await this.getRequest<WithPaginationResponse<WebhookHistoryModel>>({
+      paramsQuery: `${this.#webhooksHistoryPath}?${convertToSearchParams(params)}`,
+    });
   };
 }

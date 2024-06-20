@@ -1,3 +1,3 @@
-import { WithPaginationRequest } from '../../../../models/index.ts';
+import { WithPaginationRequest } from '../../../../models';
 
-export type SearchProfileRequest = WithPaginationRequest
+export type SearchProfileRequest = WithPaginationRequest;

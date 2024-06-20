@@ -1,6 +1,4 @@
-export * from './verification/index.ts';
-export * from './verification-profiles/index.ts';
-export * from './sdk/index.ts';
-
-
-export * from './utils.ts';
+export * from './verification';
+export * from './verification-profiles';
+export * from './sdk';
+export * from './utils';

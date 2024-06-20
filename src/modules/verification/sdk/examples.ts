@@ -1,4 +1,4 @@
-import { VerificationDocumentTypeEnum } from '../../../enums/index.ts';
+import { VerificationDocumentTypeEnum } from '../../../enums';
 
 const docFront = {
   file: '',
@@ -19,4 +19,3 @@ export const sdkExamples = {
   docFront,
   customFields,
 };
-

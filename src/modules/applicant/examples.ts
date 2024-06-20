@@ -3,16 +3,15 @@ import {
   CreateApplicantRequest,
   SearchApplicantRequest,
   UpdateApplicantRequest,
-} from './models/index.ts';
-import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../enums/index.ts';
+} from './models';
+import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../enums';
 
-import { ApplicantGenderEnum } from './enums/index.ts';
+import { ApplicantGenderEnum } from './enums';
 
 const searchApplicants = {
   page: 0,
   limit: 20,
 } as SearchApplicantRequest;
-
 
 const createApplicant = {
   external_id: 'test-1',
@@ -39,13 +38,12 @@ const createApplicant = {
       },
     },
     custom_fields: {
-      'field_1': 'field_1',
-      'field_2': 'field_2',
-      'field_3': 'field_3',
+      field_1: 'field_1',
+      field_2: 'field_2',
+      field_3: 'field_3',
     },
   },
 } as CreateApplicantRequest;
-
 
 const updatedApplicant = {
   // external_id: 'external_id_6',
@@ -70,30 +68,23 @@ const updatedApplicant = {
     },
   },
   custom_fields: {
-    'field_1': 'field_11',
-    'field_2': 'field_22',
-    'field_3': 'field_33',
+    field_1: 'field_11',
+    field_2: 'field_22',
+    field_3: 'field_33',
   },
 } as UpdateApplicantRequest;
-
 
 const applicantTelegramLink = {
   tg_profile: '1111111',
 };
 
 const applicantSearchOptions = {
-  'risk_scores': [
-    AmlRiskScoreEnum.MEDIUM, AmlRiskScoreEnum.LOW,
-  ],
-  'tags': [
-    TagEnum.SANCTIONS, TagEnum.LEAKS,
-  ],
-  'sources': [
-    'UK_OFSI',
-  ],
-  'fuzziness': true,
-  'phonetics': true,
-  'mode': 0,
+  risk_scores: [AmlRiskScoreEnum.MEDIUM, AmlRiskScoreEnum.LOW],
+  tags: [TagEnum.SANCTIONS, TagEnum.LEAKS],
+  sources: ['UK_OFSI'],
+  fuzziness: true,
+  phonetics: true,
+  mode: 0,
 } as ApplicantSearchOptions;
 
 const applicantAmlScreening = {
@@ -111,14 +102,19 @@ const deleteApplicantTest = async (applicant: CreateApplicantRequest, createFunc
 
     if (isSuccessDeleteApplicant) {
       console.log('Delete applicant:', createApplicantId);
-
     } else {
       console.log('Failed delete applicant:', createApplicantId);
     }
   }
 };
 
-const updateApplicantTest = async (applicant: CreateApplicantRequest, updatedApplicant: UpdateApplicantRequest, createFunc: any, updateFunc: any, getFunc: any) => {
+const updateApplicantTest = async (
+  applicant: CreateApplicantRequest,
+  updatedApplicant: UpdateApplicantRequest,
+  createFunc: any,
+  updateFunc: any,
+  getFunc: any,
+) => {
   const createApplicant = await createFunc(applicant);
   const createApplicantId = createApplicant.data.id;
 
@@ -133,14 +129,12 @@ const updateApplicantTest = async (applicant: CreateApplicantRequest, updatedApp
       const applicantApi = await getFunc(createApplicantId);
       const applicantApiBody = applicantApi.data;
 
-
       const result = [
         ['send', JSON.stringify(applicant)],
         ['update', JSON.stringify(updatedApplicant)],
         ['given', JSON.stringify(applicantApiBody)],
       ];
       console.table(result);
-
     } else {
       console.log('Failed update applicant:', createApplicantId);
     }
@@ -157,4 +151,3 @@ export const applicantExamples = {
   deleteApplicantTest,
   updateApplicantTest,
 };
-

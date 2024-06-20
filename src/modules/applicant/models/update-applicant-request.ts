@@ -1,19 +1,16 @@
-import { AmlRiskScoreEnum, TagEnum } from '../../../enums/index.js';
-import { ApplicantInfoModel, ApplicantMainInfo } from './applicant-info-model.js';
-import { DataSourceModel } from '../../aml/models/index.js';
+import { AmlRiskScoreEnum, TagEnum } from '../../../enums';
+import { ApplicantInfoModel } from './applicant-info-model';
+import { DataSourceModel } from '../../aml/models';
 
-
-export type UpdateApplicantRequest = ApplicantInfoModel &{
+export type UpdateApplicantRequest = ApplicantInfoModel & {
   email?: string;
   phone?: string;
-  search_options? : {
-    risk_scores: AmlRiskScoreEnum[],
-    tags: TagEnum[],
-    sources: string | DataSourceModel['source_id'],
-    phonetics: boolean,
-    fuzziness: boolean,
-    "mode": 0
-  }
+  search_options?: {
+    risk_scores: AmlRiskScoreEnum[];
+    tags: TagEnum[];
+    sources: string | DataSourceModel['source_id'];
+    phonetics: boolean;
+    fuzziness: boolean;
+    mode: 0;
+  };
 };
-
-

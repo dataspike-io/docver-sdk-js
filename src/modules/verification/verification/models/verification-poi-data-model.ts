@@ -1,5 +1,5 @@
-import { VerificationGenderEnum } from '../enums/index.ts';
-import { VerificationDocumentTypeEnum } from '../../../../enums/index.js';
+import { VerificationGenderEnum } from '../enums';
+import { VerificationDocumentTypeEnum } from '../../../../enums';
 
 export type VerificationPoiDataModel = {
   parsed_type: VerificationDocumentTypeEnum;

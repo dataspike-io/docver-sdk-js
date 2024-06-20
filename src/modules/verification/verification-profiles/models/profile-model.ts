@@ -1,7 +1,7 @@
-import { ProfileLinkModel } from './profile-link-model.ts';
-import { VerificationBiometricTypeEnum, VerificationDocumentTypeEnum } from '../../../../enums/index.js';
-import { VerificationProfileManuelFieldsSettingsModel } from './profile-manual-fields-settings-model.js';
-import { ProfileFinishScreenSettingsModel } from './profile-finish-screen-settings-model.js';
+import { ProfileLinkModel } from './profile-link-model';
+import { VerificationBiometricTypeEnum, VerificationDocumentTypeEnum } from '../../../../enums';
+import { VerificationProfileManuelFieldsSettingsModel } from './profile-manual-fields-settings-model';
+import { ProfileFinishScreenSettingsModel } from './profile-finish-screen-settings-model';
 import { Iso3166Alpha2Code } from 'iso-3166-ts';
 
 export type ProfileModel = {
@@ -13,10 +13,9 @@ export type ProfileModel = {
   updated_at: string;
   created_at: string;
   created_by: string;
-  settings:ProfileSettingsModel;
+  settings: ProfileSettingsModel;
   link?: ProfileLinkModel;
 };
-
 
 export type ProfileSettingsModel = {
   poi_required: boolean;

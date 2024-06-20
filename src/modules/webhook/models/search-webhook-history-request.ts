@@ -1,9 +1,6 @@
-import { WithPaginationRequest } from '../../../models/index.ts';
+import { WithPaginationRequest } from '../../../models';
 
-export type SearchWebhookHistoryRequest = WithPaginationRequest &{
+export type SearchWebhookHistoryRequest = WithPaginationRequest & {
   webhook_id?: string;
-  after?: string
-}
-
-
-
+  after?: string;
+};

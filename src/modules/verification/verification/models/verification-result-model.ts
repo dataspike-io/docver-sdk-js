@@ -4,9 +4,9 @@ import {
   VerificationBiometricTypeEnum,
   VerificationDocumentTypeEnum,
   VerificationStatusEnum,
-} from '../../../../enums/index.ts';
-import { VerificationProfileManuelFieldsSettingsModel } from '../../verification-profiles/index.ts';
-import { VerificationPoiDataModel } from './verification-poi-data-model.ts';
+} from '../../../../enums';
+import { VerificationProfileManuelFieldsSettingsModel } from '../../verification-profiles';
+import { VerificationPoiDataModel } from './verification-poi-data-model';
 
 export type VerificationResultModel = {
   id: string;
@@ -15,10 +15,7 @@ export type VerificationResultModel = {
   account_email?: string;
   applicant_id: string;
   status: VerificationStatusEnum;
-  document_type:
-    | VerificationDocumentTypeEnum
-    | VerificationBiometricTypeEnum
-    | VerificationAddressTypeEnum;
+  document_type: VerificationDocumentTypeEnum | VerificationBiometricTypeEnum | VerificationAddressTypeEnum;
   documents: VerificationDocumentsImg[] | null;
   checks: {
     document_mrz: VerificationCheckResultModel & {

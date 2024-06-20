@@ -14,7 +14,3 @@ export enum VerificationBiometricTypeEnum {
   SELFIE = 'selfie',
   LIVENESS_PHOTO = 'liveness_photo',
 }
-
-
-
-

@@ -1,2 +1,2 @@
-export * from './verification-type-enum.ts'
-export * from './verification-status-enum.ts'
+export * from './verification-type-enum';
+export * from './verification-status-enum';

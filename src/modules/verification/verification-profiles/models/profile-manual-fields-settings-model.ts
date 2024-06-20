@@ -1,7 +1,6 @@
-import { CustomFieldsModel } from '../../sdk/index.ts';
+import { CustomFieldsModel } from '../../sdk';
 
-export type VerificationProfileManuelFieldsSettingsModel =  CustomFieldsModel &{
+export type VerificationProfileManuelFieldsSettingsModel = CustomFieldsModel & {
   enabled: boolean;
   description?: string;
-
 };

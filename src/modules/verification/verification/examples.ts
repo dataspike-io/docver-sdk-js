@@ -1,5 +1,5 @@
-import { VerificationDocumentTypeEnum, VerificationStatusEnum } from '../../../enums/index.js';
-import { SearchVerificationRequest } from './models/index.js';
+import { VerificationDocumentTypeEnum, VerificationStatusEnum } from '../../../enums';
+import { SearchVerificationRequest } from './models';
 
 const searchVerification = {
   page: 0,
@@ -18,7 +18,6 @@ const createVerification = {
   profile_id: '1eed2585-424f-67ec-8f88-bfbe1cfbe558',
   expiration_minutes: 500,
 };
-
 
 export const verificationExamples = {
   searchVerification,

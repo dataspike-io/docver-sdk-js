@@ -43,7 +43,7 @@ Currently library provides following resources
 
 ```node.js
 from dataspike import *
-import { amlExampleRequests, Api } from './modules/index.ts';
+import { amlExampleRequests, Api } from './modules/index';
 
 const api = new Api(TOKEN);
 const amlSearchResult = await api.aml.search(amlExampleRequests.amlSearchExample);

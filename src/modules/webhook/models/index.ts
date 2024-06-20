@@ -1,3 +1,3 @@
-export * from './webhook-model.ts'
-export * from './webhook-history-model.ts'
-export * from './search-webhook-history-request.ts'
+export * from './webhook-model';
+export * from './webhook-history-model';
+export * from './search-webhook-history-request';

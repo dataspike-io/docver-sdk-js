@@ -1,8 +1,7 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api/index.ts';
-import { ProceedVerificationErrorModel, VerificationResultModel } from '../verification/index.ts';
-import { SetCustomFieldsRequest, UploadDocumentRequest } from './models/index.ts';
-import { utils } from '../utils.ts';
-
+import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api';
+import { ProceedVerificationErrorModel, VerificationResultModel } from '../verification';
+import { SetCustomFieldsRequest, UploadDocumentRequest } from './models';
+import { utils } from '../utils';
 
 export class SdkApi extends BaseAPi {
   #verificationsPath = `/api/v3/sdk`;
@@ -16,11 +15,16 @@ export class SdkApi extends BaseAPi {
   }
 
   getVerificationByShortId = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    return await this.getRequest<VerificationResultModel>({ paramsQuery: `${this.#verificationsPath}/${verificationShortId}` });
+    return await this.getRequest<VerificationResultModel>({
+      paramsQuery: `${this.#verificationsPath}/${verificationShortId}`,
+    });
   };
-  uploadDocument = async (verificationShortId: string | VerificationResultModel['verification_url_id'], data: UploadDocumentRequest) => {
+  uploadDocument = async (
+    verificationShortId: string | VerificationResultModel['verification_url_id'],
+    data: UploadDocumentRequest,
+  ) => {
     const currentFile = utils.convertFile(data.file);
-    let currentData = {
+    const currentData = {
       ...data,
       file: currentFile,
     };
@@ -33,13 +37,16 @@ export class SdkApi extends BaseAPi {
     });
   };
   proceedVerification = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    let res = await this.getRequest<string>({
+    const res = await this.getRequest<string>({
       method: RequestMethodEnum.POST,
       paramsQuery: `${this.#verificationsPath}/${verificationShortId}/proceed`,
     });
     return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
-  setCustomFields = async (verificationShortId: string | VerificationResultModel['verification_url_id'], data: SetCustomFieldsRequest) => {
+  setCustomFields = async (
+    verificationShortId: string | VerificationResultModel['verification_url_id'],
+    data: SetCustomFieldsRequest,
+  ) => {
     return await this.getRequest<ResponseDefaultModel>({
       method: RequestMethodEnum.POST,
       paramsQuery: `${this.#verificationsPath}/${verificationShortId}/fields`,

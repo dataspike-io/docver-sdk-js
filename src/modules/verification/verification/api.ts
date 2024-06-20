@@ -1,14 +1,13 @@
-import { BaseAPi, RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api/index.js';
+import { BaseAPi, RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api';
 
 import {
   CreateVerificationRequest,
   ProceedVerificationErrorModel,
   SearchVerificationRequest,
   VerificationResultModel,
-} from './models/index.js';
-import { WithPaginationResponse } from '../../../models/index.js';
-import { convertToSearchParams } from '../../utilts.ts';
-
+} from './models';
+import { WithPaginationResponse } from '../../../models';
+import { convertToSearchParams } from '../../utilts';
 
 export class VerificationApi extends BaseAPi {
   #verificationsPath = `/api/v3/verifications`;
@@ -18,17 +17,25 @@ export class VerificationApi extends BaseAPi {
   }
 
   getVerifications = async (params: SearchVerificationRequest) => {
-    return await this.getRequest<WithPaginationResponse<VerificationResultModel>>({ paramsQuery: `${this.#verificationsPath}?${convertToSearchParams(params)}` });
+    return await this.getRequest<WithPaginationResponse<VerificationResultModel>>({
+      paramsQuery: `${this.#verificationsPath}?${convertToSearchParams(params)}`,
+    });
   };
   getVerificationById = async (verificationId: string) => {
-    return await this.getRequest<VerificationResultModel>({ paramsQuery: `${this.#verificationsPath}/${verificationId}` });
+    return await this.getRequest<VerificationResultModel>({
+      paramsQuery: `${this.#verificationsPath}/${verificationId}`,
+    });
   };
   getVerificationByShortId = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    return await this.getRequest<VerificationResultModel>({ paramsQuery: `${this.#verificationsPath}/short/${verificationShortId}` });
+    return await this.getRequest<VerificationResultModel>({
+      paramsQuery: `${this.#verificationsPath}/short/${verificationShortId}`,
+    });
   };
   getVerificationsForApplicant = async (applicantId: string, params?: SearchVerificationRequest) => {
     // not working
-    return await this.getRequest<VerificationResultModel>({ paramsQuery: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}` });
+    return await this.getRequest<VerificationResultModel>({
+      paramsQuery: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}`,
+    });
   };
   createVerification = async (verification: CreateVerificationRequest) => {
     return await this.getRequest<VerificationResultModel>({
@@ -38,7 +45,7 @@ export class VerificationApi extends BaseAPi {
     });
   };
   proceedVerification = async (verificationId: string) => {
-    let res = await this.getRequest<string>({
+    const res = await this.getRequest<string>({
       method: RequestMethodEnum.POST,
       paramsQuery: `${this.#verificationsPath}/${verificationId}/proceed`,
     });
@@ -50,5 +57,4 @@ export class VerificationApi extends BaseAPi {
       paramsQuery: `${this.#verificationsPath}/${verificationId}/cancel`,
     });
   };
-
 }
