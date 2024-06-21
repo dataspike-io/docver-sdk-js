@@ -1,0 +1,38 @@
+version: v1.0
+name: Init
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+global_job_config:
+  prologue:
+    commands:
+      - export SEMAPHORE_GIT_DEPTH=1
+      - checkout
+      - export NODE_OPTIONS=--max-old-space-size=4096
+      - export DEBUG=off
+      - export CI=false
+      - sem-version node 20.14.0
+fail_fast:
+  stop:
+    when: branch != 'master'
+auto_cancel:
+  running:
+    when: branch != 'master'
+
+blocks:
+  - name: "Build"
+    dependencies: []
+    task:
+      jobs:
+        - name: Test
+          commands:
+            - yarn install
+            - export NODE_ENV=production
+            - yarn build --version="test"
+
+promotions:
+  - name: "Deploy"
+    pipeline_file: "deploy.yml"
+    auto_promote:
+      when: "result = 'passed' and tag =~ '^v\\d+\\.\\d+\\.\\d+$'"
