@@ -18,43 +18,43 @@ export class VerificationApi extends BaseAPi {
 
   getVerifications = async (params: SearchVerificationRequest) => {
     return await this.getRequest<WithPaginationResponse<VerificationResultModel>>({
-      paramsQuery: `${this.#verificationsPath}?${convertToSearchParams(params)}`,
+      query: `${this.#verificationsPath}?${convertToSearchParams(params)}`,
     });
   };
   getVerificationById = async (verificationId: string) => {
     return await this.getRequest<VerificationResultModel>({
-      paramsQuery: `${this.#verificationsPath}/${verificationId}`,
+      query: `${this.#verificationsPath}/${verificationId}`,
     });
   };
   getVerificationByShortId = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
     return await this.getRequest<VerificationResultModel>({
-      paramsQuery: `${this.#verificationsPath}/short/${verificationShortId}`,
+      query: `${this.#verificationsPath}/short/${verificationShortId}`,
     });
   };
   getVerificationsForApplicant = async (applicantId: string, params?: SearchVerificationRequest) => {
     // not working
     return await this.getRequest<VerificationResultModel>({
-      paramsQuery: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}`,
+      query: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}`,
     });
   };
   createVerification = async (verification: CreateVerificationRequest) => {
     return await this.getRequest<VerificationResultModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: this.#verificationsPath,
+      query: this.#verificationsPath,
       data: verification,
     });
   };
   proceedVerification = async (verificationId: string) => {
     const res = await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#verificationsPath}/${verificationId}/proceed`,
+      query: `${this.#verificationsPath}/${verificationId}/proceed`,
     });
     return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
   cancelVerification = async (verificationId: string) => {
     return await this.getRequest<ResponseIdModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#verificationsPath}/${verificationId}/cancel`,
+      query: `${this.#verificationsPath}/${verificationId}/cancel`,
     });
   };
 }

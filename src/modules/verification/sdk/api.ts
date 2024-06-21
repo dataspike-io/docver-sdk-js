@@ -16,7 +16,7 @@ export class SdkApi extends BaseAPi {
 
   getVerificationByShortId = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
     return await this.getRequest<VerificationResultModel>({
-      paramsQuery: `${this.#verificationsPath}/${verificationShortId}`,
+      query: `${this.#verificationsPath}/${verificationShortId}`,
     });
   };
   uploadDocument = async (
@@ -31,7 +31,7 @@ export class SdkApi extends BaseAPi {
 
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#uploadPath}/${verificationShortId}`,
+      query: `${this.#uploadPath}/${verificationShortId}`,
       data: currentData,
       headers: this.#uploadHeaders,
     });
@@ -39,7 +39,7 @@ export class SdkApi extends BaseAPi {
   proceedVerification = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
     const res = await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#verificationsPath}/${verificationShortId}/proceed`,
+      query: `${this.#verificationsPath}/${verificationShortId}/proceed`,
     });
     return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
@@ -49,7 +49,7 @@ export class SdkApi extends BaseAPi {
   ) => {
     return await this.getRequest<ResponseDefaultModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#verificationsPath}/${verificationShortId}/fields`,
+      query: `${this.#verificationsPath}/${verificationShortId}/fields`,
       data,
     });
   };

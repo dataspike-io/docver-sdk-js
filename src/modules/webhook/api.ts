@@ -14,31 +14,31 @@ export class WebhookApi extends BaseAPi {
   getWebhook = async () => {
     return await this.getRequest<{
       webhooks: WebhookModel[];
-    }>({ paramsQuery: `${this.#webhooksPath}` });
+    }>({ query: `${this.#webhooksPath}` });
   };
   createWebhook = async (webhook: WebhookModelDefault) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#webhooksPath}`,
+      query: `${this.#webhooksPath}`,
       data: webhook,
     });
   };
   updateWebhook = async (webhookId: string, webhook: WebhookModelDefault) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.PUT,
-      paramsQuery: `${this.#webhooksPath}/${webhookId}`,
+      query: `${this.#webhooksPath}/${webhookId}`,
       data: webhook,
     });
   };
   deleteWebhook = async (webhookId: string) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.DELETE,
-      paramsQuery: `${this.#webhooksPath}/${webhookId}`,
+      query: `${this.#webhooksPath}/${webhookId}`,
     });
   };
   getWebhookHistory = async (params: SearchWebhookHistoryRequest) => {
     return await this.getRequest<WithPaginationResponse<WebhookHistoryModel>>({
-      paramsQuery: `${this.#webhooksHistoryPath}?${convertToSearchParams(params)}`,
+      query: `${this.#webhooksHistoryPath}?${convertToSearchParams(params)}`,
     });
   };
 }

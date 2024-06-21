@@ -1,13 +1,15 @@
 {
-  "name": "api",
+  "name": "@dataspike/sdk",
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
-  "type": "module",
+  "engines" : {
+    "node" : ">=16.0.0"
+  },
   "scripts": {
-    "dev": "nodemon --exec 'ts-node index.ts'",
-    "start": "npm run build && node build/index.js",
-    "build": "rimraf ./build && npx tsc -d --declarationDir dist/lib --declarationMap --emitDeclarationOnly",
+    "dev": "ts-node --project tsconfig.start.json start.ts",
+    "build": "rimraf ./dist && tsc",
+    "build-definitions": "npx tsc -d --declarationDir dist --declarationMap --emitDeclarationOnly",
     "lint": "eslint ./src",
     "format": "eslint ./src --fix",
     "precommit": "npm run lint"

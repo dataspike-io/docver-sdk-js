@@ -13,64 +13,64 @@ export class VerificationProfileApi extends BaseAPi {
 
   getProfiles = async (params: SearchProfileRequest) => {
     return await this.getRequest<WithPaginationResponse<ProfileModel>>({
-      paramsQuery: `${this.#profilePath}?${convertToSearchParams(params)}`,
+      query: `${this.#profilePath}?${convertToSearchParams(params)}`,
     });
   };
   createProfile = async (profile: BaseProfileModel) => {
     return await this.getRequest<ResponseIdModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: this.#profilePath,
+      query: this.#profilePath,
       data: profile,
     });
   };
   getProfileById = async (profileId: string) => {
-    return await this.getRequest<ProfileModel>({ paramsQuery: `${this.#profilePath}/${profileId}` });
+    return await this.getRequest<ProfileModel>({ query: `${this.#profilePath}/${profileId}` });
   };
   updateProfile = async (profileId: string, profile: BaseProfileModel) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#profilePath}/${profileId}`,
+      query: `${this.#profilePath}/${profileId}`,
       data: profile,
     });
   };
   archiveProfile = async (profileId: string) => {
     return await this.getRequest<ResponseDefaultModel>({
       method: RequestMethodEnum.DELETE,
-      paramsQuery: `${this.#profilePath}/${profileId}`,
+      query: `${this.#profilePath}/${profileId}`,
     });
   };
   setDefaultProfile = async (profileId: string) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#profilePath}/${profileId}/set_default`,
+      query: `${this.#profilePath}/${profileId}/set_default`,
     });
   };
   createVerificationLink = async (profileId: string, verificationLink: CreateVerificationLinkRequest) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#profilePath}/${profileId}/link`,
+      query: `${this.#profilePath}/${profileId}/link`,
       data: verificationLink,
     });
   };
   getVerificationLinkByLinkId = async (linkId: string) => {
-    return await this.getRequest<string>({ paramsQuery: `/api/v3/sdk/link/${linkId}` });
+    return await this.getRequest<string>({ query: `/api/v3/sdk/link/${linkId}` });
   };
   changeVerificationLinkOptions = async (linkId: string, verificationLink: CreateVerificationLinkRequest) => {
     return await this.getRequest<{
       link_id: string;
-    }>({ method: RequestMethodEnum.POST, paramsQuery: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
+    }>({ method: RequestMethodEnum.POST, query: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
   };
   archiveVerificationLink = async (linkId: string) => {
     // not working
     return await this.getRequest<string>({
       method: RequestMethodEnum.DELETE,
-      paramsQuery: `${this.#profilePath}/link/${linkId}`,
+      query: `${this.#profilePath}/link/${linkId}`,
     });
   };
   unarchiveVerificationLink = async (linkId: string) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#profilePath}/link/${linkId}/unarchive`,
+      query: `${this.#profilePath}/link/${linkId}/unarchive`,
     });
   };
 }

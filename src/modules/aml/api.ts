@@ -13,25 +13,25 @@ export class AmlApi extends BaseAPi {
 
   getHistoryById = async (id: string) => {
     return await this.getRequest<AmlHistoryModel>({
-      paramsQuery: `${this.#amlPath}/history/${id}`,
+      query: `${this.#amlPath}/history/${id}`,
     });
   };
   getHistory = async () => {
     return await this.getRequest<AmlHistoryModel>({
-      paramsQuery: `${this.#amlPath}/history`,
+      query: `${this.#amlPath}/history`,
     });
   };
   search = async (data: AmlSearchRequestModel) => {
     return await this.getRequest<AmlHistoryModel, AmlSearchRequestModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: this.#amlPath,
+      query: this.#amlPath,
       data,
     });
   };
   getDataSources = async (data: SearchDataSourcesRequest) => {
     return await this.getRequest<WithPaginationResponse<DataSourceModel>>({
       method: RequestMethodEnum.POST,
-      paramsQuery: this.#datasourcesPath,
+      query: this.#datasourcesPath,
       data,
     });
   };

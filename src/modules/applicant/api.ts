@@ -20,56 +20,56 @@ export class ApplicantApi extends BaseAPi {
   }
 
   getApplicantById = async (applicantId: string) => {
-    return await this.getRequest<ApplicantModel>({ paramsQuery: `${this.#applicantsPath}/${applicantId}` });
+    return await this.getRequest<ApplicantModel>({ query: `${this.#applicantsPath}/${applicantId}` });
   };
   getApplicants = async (params: SearchApplicantRequest) => {
     return await this.getRequest<WithPaginationResponse<ApplicantModel>>({
-      paramsQuery: `${this.#applicantsPath}?${convertToSearchParams(params)}`,
+      query: `${this.#applicantsPath}?${convertToSearchParams(params)}`,
     });
   };
   createApplicant = async (applicant: CreateApplicantRequest) => {
     return await this.getRequest<ResponseIdModel>({
       method: RequestMethodEnum.POST,
-      paramsQuery: this.#applicantsPath,
+      query: this.#applicantsPath,
       data: applicant,
     });
   };
   updateApplicant = async (applicantId: string, applicant: UpdateApplicantRequest) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#applicantsPath}/${applicantId}`,
+      query: `${this.#applicantsPath}/${applicantId}`,
       data: applicant,
     });
   };
   deleteApplicant = async (applicantId: string) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.DELETE,
-      paramsQuery: `${this.#applicantsPath}/${applicantId}`,
+      query: `${this.#applicantsPath}/${applicantId}`,
     });
   };
   getApplicantByExternalId = async (externalId: string) => {
     return await this.getRequest<ApplicantModel>({
-      paramsQuery: `${this.#applicantsPath}/by_external_id/${externalId}`,
+      query: `${this.#applicantsPath}/by_external_id/${externalId}`,
     });
   };
   getApplicantTelegramLink = async (applicantId: string, applicant: ApplicantTelegramRequest) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#applicantsPath}/${applicantId}/link/tg`,
+      query: `${this.#applicantsPath}/${applicantId}/link/tg`,
       data: applicant,
     });
   };
   changeApplicantSearchOptions = async (applicantId: string, applicant: ApplicantSearchOptions) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#applicantsPath}/${applicantId}/search-options`,
+      query: `${this.#applicantsPath}/${applicantId}/search-options`,
       data: applicant,
     });
   };
   changeApplicantAmlScreening = async (applicantId: string, applicant: ChangeApplicantAmlScreeningRequest) => {
     return await this.getRequest<string>({
       method: RequestMethodEnum.POST,
-      paramsQuery: `${this.#applicantsPath}/${applicantId}/screening`,
+      query: `${this.#applicantsPath}/${applicantId}/screening`,
       data: applicant,
     });
   };

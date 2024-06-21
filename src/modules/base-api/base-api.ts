@@ -10,7 +10,7 @@ export enum RequestMethodEnum {
 
 export type RequestProps<D> = {
   method?: RequestMethodEnum;
-  paramsQuery?: string;
+  query?: string;
   data?: D;
   headers?: Record<string, string>;
 };
@@ -27,16 +27,11 @@ export class BaseAPi {
   }
 
   // getRequest = async <R, D = unknown>(method: RequestMethodEnum, paramsQuery: string, data?: D, headers?: Record<string, string>) => {
-  getRequest = async <R, D = unknown>({
-    method = RequestMethodEnum.GET,
-    paramsQuery,
-    data,
-    headers,
-  }: RequestProps<D>) => {
+  getRequest = async <R, D = unknown>({ method = RequestMethodEnum.GET, query, data, headers }: RequestProps<D>) => {
     try {
       const response = await axios({
         method,
-        url: this.url + paramsQuery,
+        url: this.url + query,
         headers: {
           'ds-api-token': this.token,
           'Content-Type': 'application/json',
