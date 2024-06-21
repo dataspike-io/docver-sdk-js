@@ -1,0 +1,35 @@
+version: v1.0
+name: Deploy
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+global_job_config:
+  secrets:
+    - name: NPM_DEPLOY
+  prologue:
+    commands:
+       - export SEMAPHORE_GIT_DEPTH=1
+      - checkout
+      - export NODE_OPTIONS=--max-old-space-size=4096
+      - export DEBUG=off
+      - export CI=false
+      - sem-version node 20.14.0
+fail_fast:
+  stop:
+    when: branch != 'master'
+auto_cancel:
+  running:
+    when: branch != 'master'
+blocks:
+  - name: "NPM"
+    dependencies: []
+    task:
+      jobs:
+        - name: "Publishing to NPM.."
+          commands:
+            - yarn install
+            - export NODE_ENV=production
+            - yarn build --version=${SEMAPHORE_GIT_TAG_NAME:1}
+            - npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+            - npm publish --access public

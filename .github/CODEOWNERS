@@ -1,0 +1,6 @@
+# Repository owners
+* @dataspike-io/ds-web
+
+# CI managed files
+/.github/ @dataspike-io/ds-ops
+/.semaphore/ @dataspike-io/ds-ops
