@@ -91,55 +91,55 @@ const applicantAmlScreening = {
   aml_screening_enabled: true,
 };
 
-const deleteApplicantTest = async (applicant: CreateApplicantRequest, createFunc: any, deleteFunc: any) => {
-  const createApplicant = await createFunc(applicant);
-  const createApplicantId = createApplicant.data.id;
+// const deleteApplicantTest = async (applicant: CreateApplicantRequest, createFunc: any, deleteFunc: any) => {
+//   const createApplicant = await createFunc(applicant);
+//   const createApplicantId = createApplicant.data.id;
+//
+//   if (createApplicant.data.id) {
+//     console.log('Create applicant:', createApplicantId);
+//     const deleteApplicant = await deleteFunc(createApplicantId);
+//     const isSuccessDeleteApplicant = deleteApplicant.status === 200;
+//
+//     if (isSuccessDeleteApplicant) {
+//       console.log('Delete applicant:', createApplicantId);
+//     } else {
+//       console.log('Failed delete applicant:', createApplicantId);
+//     }
+//   }
+// };
 
-  if (createApplicant.data.id) {
-    console.log('Create applicant:', createApplicantId);
-    const deleteApplicant = await deleteFunc(createApplicantId);
-    const isSuccessDeleteApplicant = deleteApplicant.status === 200;
-
-    if (isSuccessDeleteApplicant) {
-      console.log('Delete applicant:', createApplicantId);
-    } else {
-      console.log('Failed delete applicant:', createApplicantId);
-    }
-  }
-};
-
-const updateApplicantTest = async (
-  applicant: CreateApplicantRequest,
-  updatedApplicant: UpdateApplicantRequest,
-  createFunc: any,
-  updateFunc: any,
-  getFunc: any,
-) => {
-  const createApplicant = await createFunc(applicant);
-  const createApplicantId = createApplicant.data.id;
-
-  if (createApplicant.data.id) {
-    console.log('Create applicant:', createApplicantId);
-    const updateApplicant = await updateFunc(updatedApplicant, createApplicantId);
-    const isSuccessUpdateApplicant = updateApplicant.status === 200;
-    console.log(updateApplicant);
-    if (isSuccessUpdateApplicant) {
-      console.log('Update applicant:', createApplicantId);
-
-      const applicantApi = await getFunc(createApplicantId);
-      const applicantApiBody = applicantApi.data;
-
-      const result = [
-        ['send', JSON.stringify(applicant)],
-        ['update', JSON.stringify(updatedApplicant)],
-        ['given', JSON.stringify(applicantApiBody)],
-      ];
-      console.table(result);
-    } else {
-      console.log('Failed update applicant:', createApplicantId);
-    }
-  }
-};
+// const updateApplicantTest = async (
+//   applicant: CreateApplicantRequest,
+//   updatedApplicant: UpdateApplicantRequest,
+//   createFunc: any,
+//   updateFunc: any,
+//   getFunc: any,
+// ) => {
+//   const createApplicant = await createFunc(applicant);
+//   const createApplicantId = createApplicant.data.id;
+//
+//   if (createApplicant.data.id) {
+//     console.log('Create applicant:', createApplicantId);
+//     const updateApplicant = await updateFunc(updatedApplicant, createApplicantId);
+//     const isSuccessUpdateApplicant = updateApplicant.status === 200;
+//     console.log(updateApplicant);
+//     if (isSuccessUpdateApplicant) {
+//       console.log('Update applicant:', createApplicantId);
+//
+//       const applicantApi = await getFunc(createApplicantId);
+//       const applicantApiBody = applicantApi.data;
+//
+//       const result = [
+//         ['send', JSON.stringify(applicant)],
+//         ['update', JSON.stringify(updatedApplicant)],
+//         ['given', JSON.stringify(applicantApiBody)],
+//       ];
+//       console.table(result);
+//     } else {
+//       console.log('Failed update applicant:', createApplicantId);
+//     }
+//   }
+// };
 
 export const applicantExamples = {
   searchApplicants,
@@ -148,6 +148,6 @@ export const applicantExamples = {
   applicantTelegramLink,
   applicantSearchOptions,
   applicantAmlScreening,
-  deleteApplicantTest,
-  updateApplicantTest,
+  // deleteApplicantTest,
+  // updateApplicantTest,
 };
