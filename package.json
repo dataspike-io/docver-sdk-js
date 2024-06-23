@@ -6,7 +6,7 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "dev": "ts-node --project tsconfig.start.json start.ts",
+    "dev": "cross-env ts-node --project tsconfig.start.json start.ts",
     "build": "rimraf ./dist && tsc && webpack && npx tsc -d --declarationDir dist --declarationMap --emitDeclarationOnly",
     "lint": "eslint ./src",
     "format": "eslint ./src --fix",
@@ -19,6 +19,7 @@
     "@types/node": "^20.14.0",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "filemanager-webpack-plugin": "^8.0.0",
     "generate-package-json-webpack-plugin": "^2.6.0",
