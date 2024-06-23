@@ -1,18 +1,28 @@
-import { AmlApi } from './aml/api.js';
-import { ApplicantsApi } from './applicants/api.js';
+import { AmlApi } from './aml';
+import { ApplicantApi } from './applicant';
+import { SdkApi, VerificationApi, VerificationProfileApi } from './verification';
+import { WebhookApi } from './webhook';
 
-export class Api {
-  url?: string
-  token: string
-  constructor( token: string, url?: string ) {
-    this.url = url
-    this.token = token
-  }
+export class DSApi {
+  token: string;
+  isSandbox?: boolean;
 
-  get aml() {
-    return new AmlApi(this.token)
-  }
-  get applicant() {
-    return new ApplicantsApi(this.token)
+  aml: AmlApi;
+  applicant: ApplicantApi;
+  profile: VerificationProfileApi;
+  verification: VerificationApi;
+  sdk: SdkApi;
+  webhook: WebhookApi;
+
+  constructor(token: string, isSandbox: boolean = false) {
+    this.token = token;
+    this.isSandbox = isSandbox;
+
+    this.aml = new AmlApi(this.token, this.isSandbox);
+    this.applicant = new ApplicantApi(this.token, this.isSandbox);
+    this.profile = new VerificationProfileApi(this.token, this.isSandbox);
+    this.verification = new VerificationApi(this.token, this.isSandbox);
+    this.sdk = new SdkApi(this.token, this.isSandbox);
+    this.webhook = new WebhookApi(this.token, this.isSandbox);
   }
 }
