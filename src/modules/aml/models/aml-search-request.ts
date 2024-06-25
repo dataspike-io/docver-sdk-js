@@ -1,13 +1,10 @@
 import { AmlRiskScoreEnum, EntityTypeEnum, TagEnum } from '../../../enums/index.js';
 import { GenderEnum } from '../enums/index.js';
 import { DataSourceModel } from './data-sources-model.js';
-import {  Iso3166Alpha2Code } from "iso-3166-ts";
+import { Iso3166Alpha2Code } from 'iso-3166-ts';
 import { TDateISODate } from '../../../models/date-iso.js';
 
-
-// not working: fix TODO
-const data = (new Array(11).fill(1).map((a, i) =>  i / 10)) as const
-type FuzzinessLevelType = typeof data[number];
+type FuzzinessLevelType = 0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 | 1
 
 
 export type AmlSearchRequestModel = {

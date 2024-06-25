@@ -26,7 +26,6 @@ export class BaseAPi {
     this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.dev';
   }
 
-  // getRequest = async <R, D = unknown>(method: RequestMethodEnum, paramsQuery: string, data?: D, headers?: Record<string, string>) => {
   getRequest = async <R, D = unknown>({ method = RequestMethodEnum.GET, query, data, headers }: RequestProps<D>) => {
     try {
       const response = await axios({
@@ -49,7 +48,6 @@ export class BaseAPi {
         data: response.data,
       } as ResponseModel<R, D>;
     } catch (error) {
-      console.log(error);
       if (axios.isAxiosError(error)) {
         return {
           url: error?.response?.config?.url,

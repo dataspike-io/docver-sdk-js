@@ -1,7 +1,8 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api';
+import { BaseAPi, RequestMethodEnum } from '../../base-api/base-api';
 import { ProceedVerificationErrorModel, VerificationResultModel } from '../verification';
 import { SetCustomFieldsRequest, UploadDocumentRequest } from './models';
 import { utils } from '../utils';
+import { ResponseDefaultModel, ResponseModel } from '../../base-api';
 
 export class SdkApi extends BaseAPi {
   #verificationsPath = `/api/v3/sdk`;
