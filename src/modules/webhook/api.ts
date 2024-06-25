@@ -1,7 +1,8 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api';
 import { SearchWebhookHistoryRequest, WebhookHistoryModel, WebhookModel, WebhookModelDefault } from './models';
 import { WithPaginationResponse } from '../../models';
 import { convertToSearchParams } from '../utilts';
+import { BaseAPi } from '../base-api/base-api';
+import { RequestMethodEnum } from '../base-api';
 
 export class WebhookApi extends BaseAPi {
   #webhooksPath = '/api/v3/organization/webhooks';

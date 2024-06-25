@@ -1,7 +1,8 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api/base-api';
+import { BaseAPi } from '../base-api/base-api';
 import { AmlHistoryModel, AmlSearchRequestModel, DataSourceModel } from './models';
 import { WithPaginationResponse } from '../../models';
 import { SearchDataSourcesRequest } from './models/search-data-sources-request';
+import { RequestMethodEnum } from '../base-api';
 
 export class AmlApi extends BaseAPi {
   #amlPath = '/api/v3/aml/search';

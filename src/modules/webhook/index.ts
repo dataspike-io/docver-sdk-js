@@ -1,4 +1,4 @@
 export * from './api';
-export * from './test';
+export * from './examples';
 export * from './models';
 export * from './enums';

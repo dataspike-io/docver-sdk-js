@@ -1,5 +1,5 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api/base-api';
-import { ResponseIdModel } from '../base-api/types';
+import { BaseAPi } from '../base-api/base-api';
+import { RequestMethodEnum, ResponseIdModel } from '../base-api/types';
 import {
   ApplicantModel,
   ApplicantSearchOptions,

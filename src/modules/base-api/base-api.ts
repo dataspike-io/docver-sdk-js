@@ -1,19 +1,6 @@
 import axios from 'axios';
-import { ResponseErrorModel, ResponseModel } from './types';
+import { RequestMethodEnum, RequestProps, ResponseErrorModel, ResponseModel } from './types';
 
-export enum RequestMethodEnum {
-  'GET' = 'get',
-  'PUT' = 'put',
-  'POST' = 'post',
-  'DELETE' = 'delete',
-}
-
-export type RequestProps<D> = {
-  method?: RequestMethodEnum;
-  query?: string;
-  data?: D;
-  headers?: Record<string, string>;
-};
 
 export class BaseAPi {
   url: string;

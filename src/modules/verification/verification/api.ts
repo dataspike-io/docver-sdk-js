@@ -1,5 +1,3 @@
-import { BaseAPi, RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api';
-
 import {
   CreateVerificationRequest,
   ProceedVerificationErrorModel,
@@ -8,6 +6,8 @@ import {
 } from './models';
 import { WithPaginationResponse } from '../../../models';
 import { convertToSearchParams } from '../../utilts';
+import { BaseAPi } from '../../base-api/base-api';
+import { RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api';
 
 export class VerificationApi extends BaseAPi {
   #verificationsPath = `/api/v3/verifications`;

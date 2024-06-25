@@ -1,8 +1,9 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api';
 import { SearchProfileRequest } from './models/search-profile-request';
 import { WithPaginationResponse } from '../../../models';
 import { BaseProfileModel, CreateVerificationLinkRequest, ProfileModel } from './models';
 import { convertToSearchParams } from '../../utilts';
+import { BaseAPi } from '../../base-api/base-api';
+import { RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api';
 
 export class VerificationProfileApi extends BaseAPi {
   #profilePath = '/api/v3/profiles';
