@@ -32,7 +32,6 @@ export class VerificationApi extends BaseAPi {
     });
   };
   getVerificationsForApplicant = async (applicantId: string, params?: SearchVerificationRequest) => {
-    // not working
     return await this.getRequest<VerificationResultModel>({
       query: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}`,
     });

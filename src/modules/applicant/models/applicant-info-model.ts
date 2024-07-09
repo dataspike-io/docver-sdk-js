@@ -6,8 +6,6 @@ import { DataSourceModel } from '../../aml';
 
 export type ApplicantMainInfo = {
   external_id?: string;
-  email?: string;
-  phone?: string;
   aml_screening_enabled?: boolean;
   applicant_type: EntityTypeEnum;
 };

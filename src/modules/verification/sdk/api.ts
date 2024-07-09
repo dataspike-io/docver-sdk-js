@@ -1,6 +1,6 @@
 import { BaseAPi } from '../../base-api/base-api';
 import { ProceedVerificationErrorModel, VerificationResultModel } from '../verification';
-import { SetCustomFieldsRequest, UploadDocumentRequest } from './models';
+import { SetCustomFieldsRequest, UploadDocumentModel, UploadDocumentRequest } from './models';
 import { utils } from '../utils';
 import { RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api';
 
@@ -24,13 +24,14 @@ export class SdkApi extends BaseAPi {
     verificationShortId: string | VerificationResultModel['verification_url_id'],
     data: UploadDocumentRequest,
   ) => {
-    const currentFile = utils.convertFile(data.file);
+    const currentFile = utils.convertFile(data?.file);
+
     const currentData = {
       ...data,
       file: currentFile,
     };
 
-    return await this.getRequest<string>({
+    return await this.getRequest<UploadDocumentModel>({
       method: RequestMethodEnum.POST,
       query: `${this.#uploadPath}/${verificationShortId}`,
       data: currentData,
