@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
-import { amlExampleRequests, DSApi, EntityTypeEnum } from './index';
+import { DSApi } from './src/modules/api';
+import { amlExampleRequests, EntityTypeEnum } from './src';
 
 dotenv.config();
 
