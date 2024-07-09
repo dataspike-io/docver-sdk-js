@@ -10,7 +10,7 @@ export class BaseAPi {
   constructor(token: string, isSandbox: boolean = false) {
     this.isSandbox = isSandbox;
     this.token = token;
-    this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.dev';
+    this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.io';
   }
 
   getRequest = async <R, D = unknown>({ method = RequestMethodEnum.GET, query, data, headers }: RequestProps<D>) => {

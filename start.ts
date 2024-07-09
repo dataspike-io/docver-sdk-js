@@ -5,10 +5,10 @@ import { AmlHistoryModel } from './src/modules/aml/models';
 import { profileExamples } from './src/modules/verification/verification-profiles';
 import { applicantExamples } from './src/modules/applicant';
 import { verificationExamples } from './src/modules/verification/verification';
-import { ResponseIdModel } from './src/modules/base-api';
 import * as path from 'path';
 import { sdkExamples } from './src/modules/verification/sdk';
 import { VerificationBiometricTypeEnum } from './src/enums/verification';
+import { ResponseIdModel } from './src/modules/base-api';
 
 dotenv.config();
 const api = new DSApi(process.env.API_TOKEN || '');
@@ -76,4 +76,3 @@ const startVerification = async () => {
   const proceedVerification = await api.sdk.proceedVerification(verificationShortId);
 
 };
-
