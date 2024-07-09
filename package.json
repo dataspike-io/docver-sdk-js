@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
-  "engines" : {
-    "node" : ">=16.0.0"
+  "engines": {
+    "node": ">=16.0.0"
   },
   "scripts": {
     "dev": "ts-node --project tsconfig.start.json start.ts",
@@ -36,3 +36,4 @@
     "iso-3166-ts": "^2.2.0"
   }
 }
+

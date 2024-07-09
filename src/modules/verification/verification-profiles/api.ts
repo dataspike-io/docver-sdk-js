@@ -62,7 +62,6 @@ export class VerificationProfileApi extends BaseAPi {
     }>({ method: RequestMethodEnum.POST, query: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
   };
   archiveVerificationLink = async (linkId: string) => {
-    // not working
     return await this.getRequest<string>({
       method: RequestMethodEnum.DELETE,
       query: `${this.#profilePath}/link/${linkId}`,

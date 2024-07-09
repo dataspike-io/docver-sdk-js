@@ -4,11 +4,11 @@ import { amlExampleRequests } from './src/modules/aml';
 import { AmlHistoryModel } from './src/modules/aml/models';
 import { profileExamples } from './src/modules/verification/verification-profiles';
 import { applicantExamples } from './src/modules/applicant';
+import { verificationExamples } from './src/modules/verification/verification';
 import { ResponseIdModel } from './src/modules/base-api';
 import * as path from 'path';
 import { sdkExamples } from './src/modules/verification/sdk';
 import { VerificationBiometricTypeEnum } from './src/enums/verification';
-import { verificationExamples } from './src/modules/verification/verification';
 
 dotenv.config();
 const api = new DSApi(process.env.API_TOKEN || '');
@@ -31,6 +31,7 @@ const startVerificationProfile = async () => {
 
 const startApplicant = async () => {
   const applicants = await api.applicant.getApplicants(applicantExamples.searchApplicantsExample);
+
   const createdApplicant = await api.applicant.createApplicant(applicantExamples.createApplicantExample);
   const applicantData = createdApplicant?.data as ResponseIdModel;
   const applicantId = applicantData?.id;
@@ -45,7 +46,6 @@ const startVerification = async () => {
   const verificationShortId = '*';
 
   const verifications = await api.verification.getVerifications(verificationExamples.searchVerificationExample);
-
 
   const verification = await api.verification.createVerification({
     applicant_id: applicantId,

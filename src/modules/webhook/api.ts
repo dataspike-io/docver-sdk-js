@@ -12,7 +12,7 @@ export class WebhookApi extends BaseAPi {
     super(token, isSandbox);
   }
 
-  getWebhook = async () => {
+  getWebhooks = async () => {
     return await this.getRequest<{
       webhooks: WebhookModel[];
     }>({ query: `${this.#webhooksPath}` });
