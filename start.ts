@@ -43,7 +43,7 @@ const startApplicant = async () => {
 const startVerification = async () => {
   const applicantId = '*';
   const profileId = '*';
-  const verificationShortId = 'V355444DCD73D2880';
+  const verificationShortId = '*';
 
   const verifications = await api.verification.getVerifications(verificationExamples.searchVerificationExample);
 
@@ -53,9 +53,9 @@ const startVerification = async () => {
   });
 
   // example for driver_license
-  const photoFront = path.join('/Users/evgeny/Downloads/google/', 'front.jpeg');
-  const photoBack = path.join('/Users/evgeny/Downloads/google/', 'back.jpeg');
-  const photoFace = path.join('/Users/evgeny/Downloads/google/', 'face.jpeg');
+  const photoFront = path.join('*', 'front.jpeg');
+  const photoBack = path.join('*', 'back.jpeg');
+  const photoFace = path.join('*', 'face.jpeg');
   const absolutePhotoFrontPath = path.resolve(__dirname, photoFront);
   const absolutePhotoBackPath = path.resolve(__dirname, photoBack);
   const absolutePhotoFacePath = path.resolve(__dirname, photoFace);
