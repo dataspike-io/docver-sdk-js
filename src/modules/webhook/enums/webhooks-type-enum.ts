@@ -1,0 +1,6 @@
+export enum WebhooksTypeEnum {
+  ALL = 'ALL',
+  DOCS_VERIFICATION = 'DOCVER',
+  AML_SCREENING = 'AML_SCREENING',
+  DOCVER_CHECKS = 'DOCVER_CHECKS',
+}
