@@ -1,8 +1,9 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api';
 import { SearchProfileRequest } from './models/search-profile-request';
 import { WithPaginationResponse } from '../../../models';
 import { BaseProfileModel, CreateVerificationLinkRequest, ProfileModel } from './models';
 import { convertToSearchParams } from '../../utilts';
+import { BaseAPi } from '../../base-api/base-api';
+import { RequestMethodEnum, ResponseDefaultModel, ResponseIdModel } from '../../base-api';
 
 export class VerificationProfileApi extends BaseAPi {
   #profilePath = '/api/v3/profiles';
@@ -61,7 +62,6 @@ export class VerificationProfileApi extends BaseAPi {
     }>({ method: RequestMethodEnum.POST, query: `${this.#profilePath}/link/${linkId}`, data: verificationLink });
   };
   archiveVerificationLink = async (linkId: string) => {
-    // not working
     return await this.getRequest<string>({
       method: RequestMethodEnum.DELETE,
       query: `${this.#profilePath}/link/${linkId}`,

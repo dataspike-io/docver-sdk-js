@@ -6,8 +6,6 @@ import { DataSourceModel } from '../../aml';
 
 export type ApplicantMainInfo = {
   external_id?: string;
-  email?: string;
-  phone?: string;
   aml_screening_enabled?: boolean;
   applicant_type: EntityTypeEnum;
 };
@@ -26,6 +24,7 @@ export type ApplicantInfoModel = Partial<{
   address?: string;
   registration_id?: string;
   phone?: string;
+  email?: string;
   addresses?: {
     residence?: {
       country?: Iso3166Alpha2Code;

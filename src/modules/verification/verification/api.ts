@@ -1,13 +1,14 @@
-import { BaseAPi, RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api';
-
 import {
   CreateVerificationRequest,
   ProceedVerificationErrorModel,
+  ProceedVerificationModel,
   SearchVerificationRequest,
   VerificationResultModel,
 } from './models';
 import { WithPaginationResponse } from '../../../models';
 import { convertToSearchParams } from '../../utilts';
+import { BaseAPi } from '../../base-api/base-api';
+import { RequestMethodEnum, ResponseIdModel, ResponseModel } from '../../base-api';
 
 export class VerificationApi extends BaseAPi {
   #verificationsPath = `/api/v3/verifications`;
@@ -32,7 +33,6 @@ export class VerificationApi extends BaseAPi {
     });
   };
   getVerificationsForApplicant = async (applicantId: string, params?: SearchVerificationRequest) => {
-    // not working
     return await this.getRequest<VerificationResultModel>({
       query: `${this.#verificationsPath}/applicants/${applicantId}?${convertToSearchParams(params)}`,
     });
@@ -45,11 +45,11 @@ export class VerificationApi extends BaseAPi {
     });
   };
   proceedVerification = async (verificationId: string) => {
-    const res = await this.getRequest<string>({
+    const res = await this.getRequest<ProceedVerificationModel>({
       method: RequestMethodEnum.POST,
       query: `${this.#verificationsPath}/${verificationId}/proceed`,
     });
-    return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
+    return res as ResponseModel<ProceedVerificationModel, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
   cancelVerification = async (verificationId: string) => {
     return await this.getRequest<ResponseIdModel>({

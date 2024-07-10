@@ -1,7 +1,8 @@
-import { BaseAPi, RequestMethodEnum } from '../base-api';
 import { SearchWebhookHistoryRequest, WebhookHistoryModel, WebhookModel, WebhookModelDefault } from './models';
 import { WithPaginationResponse } from '../../models';
 import { convertToSearchParams } from '../utilts';
+import { BaseAPi } from '../base-api/base-api';
+import { RequestMethodEnum } from '../base-api';
 
 export class WebhookApi extends BaseAPi {
   #webhooksPath = '/api/v3/organization/webhooks';
@@ -11,7 +12,7 @@ export class WebhookApi extends BaseAPi {
     super(token, isSandbox);
   }
 
-  getWebhook = async () => {
+  getWebhooks = async () => {
     return await this.getRequest<{
       webhooks: WebhookModel[];
     }>({ query: `${this.#webhooksPath}` });

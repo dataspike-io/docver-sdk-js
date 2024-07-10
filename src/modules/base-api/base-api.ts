@@ -1,19 +1,5 @@
 import axios from 'axios';
-import { ResponseErrorModel, ResponseModel } from './types';
-
-export enum RequestMethodEnum {
-  'GET' = 'get',
-  'PUT' = 'put',
-  'POST' = 'post',
-  'DELETE' = 'delete',
-}
-
-export type RequestProps<D> = {
-  method?: RequestMethodEnum;
-  query?: string;
-  data?: D;
-  headers?: Record<string, string>;
-};
+import { RequestMethodEnum, RequestProps, ResponseErrorModel, ResponseModel } from './types';
 
 export class BaseAPi {
   url: string;
@@ -23,10 +9,9 @@ export class BaseAPi {
   constructor(token: string, isSandbox: boolean = false) {
     this.isSandbox = isSandbox;
     this.token = token;
-    this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.dev';
+    this.url = this.isSandbox ? 'https://sandboxapi.dataspike.io' : 'https://api.dataspike.io';
   }
 
-  // getRequest = async <R, D = unknown>(method: RequestMethodEnum, paramsQuery: string, data?: D, headers?: Record<string, string>) => {
   getRequest = async <R, D = unknown>({ method = RequestMethodEnum.GET, query, data, headers }: RequestProps<D>) => {
     try {
       const response = await axios({
@@ -49,7 +34,6 @@ export class BaseAPi {
         data: response.data,
       } as ResponseModel<R, D>;
     } catch (error) {
-      console.log(error);
       if (axios.isAxiosError(error)) {
         return {
           url: error?.response?.config?.url,

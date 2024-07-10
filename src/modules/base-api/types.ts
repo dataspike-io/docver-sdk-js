@@ -1,3 +1,10 @@
+export enum RequestMethodEnum {
+  'GET' = 'get',
+  'PUT' = 'put',
+  'POST' = 'post',
+  'DELETE' = 'delete',
+}
+
 export type ResponseModel<D, R> = {
   url: string;
   status: number;
@@ -19,4 +26,11 @@ export type ResponseDefaultModel = {
 
 export type ResponseIdModel = {
   id: string;
+};
+
+export type RequestProps<D> = {
+  method?: RequestMethodEnum;
+  query?: string;
+  data?: D;
+  headers?: Record<string, string>;
 };

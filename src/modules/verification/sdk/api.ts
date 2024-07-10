@@ -1,7 +1,9 @@
-import { BaseAPi, RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api';
+import { BaseAPi } from '../../base-api/base-api';
 import { ProceedVerificationErrorModel, VerificationResultModel } from '../verification';
-import { SetCustomFieldsRequest, UploadDocumentRequest } from './models';
+import { SetCustomFieldsRequest, UploadDocumentModel, UploadDocumentRequest } from './models';
 import { utils } from '../utils';
+import { RequestMethodEnum, ResponseDefaultModel, ResponseModel } from '../../base-api';
+import { ProceedVerificationModel } from '../verification/models';
 
 export class SdkApi extends BaseAPi {
   #verificationsPath = `/api/v3/sdk`;
@@ -23,13 +25,14 @@ export class SdkApi extends BaseAPi {
     verificationShortId: string | VerificationResultModel['verification_url_id'],
     data: UploadDocumentRequest,
   ) => {
-    const currentFile = utils.convertFile(data.file);
+    const currentFile = utils.convertFile(data?.file);
+
     const currentData = {
       ...data,
       file: currentFile,
     };
 
-    return await this.getRequest<string>({
+    return await this.getRequest<UploadDocumentModel>({
       method: RequestMethodEnum.POST,
       query: `${this.#uploadPath}/${verificationShortId}`,
       data: currentData,
@@ -37,11 +40,11 @@ export class SdkApi extends BaseAPi {
     });
   };
   proceedVerification = async (verificationShortId: string | VerificationResultModel['verification_url_id']) => {
-    const res = await this.getRequest<string>({
+    const res = await this.getRequest<ProceedVerificationModel>({
       method: RequestMethodEnum.POST,
       query: `${this.#verificationsPath}/${verificationShortId}/proceed`,
     });
-    return res as ResponseModel<string, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
+    return res as ResponseModel<ProceedVerificationModel, unknown> | ResponseModel<ProceedVerificationErrorModel, unknown>;
   };
   setCustomFields = async (
     verificationShortId: string | VerificationResultModel['verification_url_id'],
